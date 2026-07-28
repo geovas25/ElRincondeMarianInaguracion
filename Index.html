@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gran Inauguración - El Rincón de Marian</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coffee: {
+                            50: '#FDFBF7',
+                            100: '#F7F2E8',
+                            200: '#EFE5D3',
+                            300: '#E2D1B3',
+                            400: '#C8A97E',
+                            500: '#A68254',
+                            600: '#8A623A',
+                            700: '#6E492B',
+                            800: '#4F321B',
+                            900: '#2C1B10',
+                            950: '#1A0E08'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #F7F2E8;
+            color: #2C1B10;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-serif-title {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .hero-pattern {
+            background-color: #F7F2E8;
+            background-image: radial-gradient(#C8A97E 0.75px, transparent 0.75px), radial-gradient(#C8A97E 0.75px, #F7F2E8 0.75px);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
+        }
+
+        /* Ambient Steam Effects */
+        .steam-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .steam {
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            width: 10px;
+            height: 30px;
+            background: rgba(166, 130, 84, 0.4);
+            border-radius: 12px;
+            filter: blur(5px);
+            animation: steamRise 3.2s infinite ease-out;
+        }
+
+        .steam:nth-child(2) {
+            left: 40%;
+            animation-delay: 0.9s;
+            height: 40px;
+        }
+
+        .steam:nth-child(3) {
+            left: 60%;
+            animation-delay: 1.7s;
+            height: 25px;
+        }
+
+        @keyframes steamRise {
+            0% { transform: translateY(0) scaleX(1); opacity: 0; }
+            50% { opacity: 0.75; }
+            100% { transform: translateY(-45px) scaleX(2.5); opacity: 0; }
+        }
+
+        .toast-notification {
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-coffee-300 selection:text-coffee-900">
+
+    <header class="sticky top-0 z-40 bg-coffee-100/95 backdrop-blur-md border-b border-coffee-200/80 shadow-xs transition-all">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-coffee-800 flex items-center justify-center text-coffee-100 font-serif font-bold text-lg border border-coffee-400">
+                    M
+                </div>
+                <span class="font-serif-title font-bold text-lg md:text-xl tracking-wider text-coffee-900">
+                    El Rincón de Marian
+                </span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="audioToggleBtn" onclick="toggleCoffeeSound()" class="p-2 px-3 rounded-full text-coffee-800 bg-coffee-200/50 hover:bg-coffee-200 transition flex items-center gap-2 text-xs font-medium border border-coffee-300/80" title="Sonido ambiente de cafetería">
+                    <i class="fa-solid fa-volume-xmark text-sm text-coffee-700" id="soundIcon"></i>
+                    <span class="hidden sm:inline" id="soundText">Ambiente</span>
+                </button>
+                <a href="#ubicacion" class="bg-coffee-800 hover:bg-coffee-900 text-coffee-100 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full transition shadow-sm hover:shadow">
+                    Ubicación
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section class="relative py-12 md:py-16 hero-pattern border-b border-coffee-200 px-4 overflow-hidden">
+            <div class="max-w-3xl mx-auto text-center relative z-10">
+                
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 bg-coffee-200/90 border border-coffee-300/90 px-4 py-1.5 rounded-full text-coffee-800 text-xs sm:text-sm font-semibold mb-8 shadow-xs">
+                    <i class="fa-solid fa-sparkles text-coffee-600"></i>
+                    <span>¡Gran Inauguración!</span>
+                    <i class="fa-solid fa-sparkles text-coffee-600"></i>
+                </div>
+
+                <!-- Circular Emblem Logo (Matching provided image) -->
+                <div class="relative inline-block mb-8 group">
+                    <div class="steam-container">
+                        <div class="steam"></div>
+                        <div class="steam"></div>
+                        <div class="steam"></div>
+                    </div>
+                    
+                    <div class="w-72 h-72 sm:w-80 sm:h-80 mx-auto rounded-full bg-[#F5EFE6] border-4 border-coffee-800 p-2.5 shadow-2xl relative flex items-center justify-center transition-transform duration-500 hover:scale-102">
+                        <div class="w-full h-full rounded-full border-2 border-coffee-800/80 flex flex-col items-center justify-center p-4 text-center relative overflow-hidden bg-[#F7F2E8] shadow-inner">
+                            
+                            <!-- Detailed Recreation of El Rincón de Marian Seal Logo -->
+                            <svg class="w-full h-full absolute inset-0 text-coffee-900 p-1" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Outer Accent Rings -->
+                                <circle cx="150" cy="150" r="142" stroke="#2C1B10" stroke-width="2"/>
+                                <circle cx="150" cy="150" r="136" stroke="#2C1B10" stroke-width="1" stroke-dasharray="2 3"/>
+                                
+                                <!-- Curved Text Top -->
+                                <path id="textPathTop" d="M 50,150 A 100,100 0 0,1 250,150" fill="none"/>
+                                <text class="text-[15px] font-serif uppercase tracking-[0.22em] font-semibold" fill="#2C1B10">
+                                    <textPath href="#textPathTop" startOffset="50%" text-anchor="middle">
+                                        • EL RINCÓN DE •
+                                    </textPath>
+                                </text>
+
+                                <!-- Central Coffee Cup & Swirl Ornaments -->
+                                <g transform="translate(150, 125)">
+                                    <!-- Decorative Swirls / Vines -->
+                                    <path d="M -45,-30 C -30,-45 -15,-20 -5,-40 C -2,-50 -10,-60 0,-65" stroke="#2C1B10" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                    <path d="M 45,-30 C 30,-45 15,-20 5,-40 C 2,-50 10,-60 0,-65" stroke="#2C1B10" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                    
+                                    <!-- Coffee Leaf Elements -->
+                                    <path d="M 0,-50 C -12,-35 -5,-20 0,-15 C 5,-20 12,-35 0,-50 Z" fill="#7A8B7B" stroke="#2C1B10" stroke-width="1.5"/>
+                                    <path d="M -25,-35 C -35,-25 -25,-10 -15,-15 C -15,-20 -20,-30 -25,-35 Z" fill="#C8A97E" stroke="#2C1B10" stroke-width="1.5"/>
+                                    <path d="M 25,-35 C 35,-25 25,-10 15,-15 C 15,-20 20,-30 25,-35 Z" fill="#C8A97E" stroke="#2C1B10" stroke-width="1.5"/>
+
+                                    <!-- Coffee Cup Body -->
+                                    <path d="M -32,-10 L 32,-10 C 30,18 18,28 0,28 C -18,28 -30,18 -32,-10 Z" fill="#A68254" stroke="#2C1B10" stroke-width="2.5"/>
+                                    <!-- Liquid inside -->
+                                    <ellipse cx="0" cy="-10" rx="32" ry="7" fill="#2C1B10"/>
+                                    <ellipse cx="0" cy="-10" rx="26" ry="4" fill="#4F321B"/>
+                                    <!-- Cup Handle -->
+                                    <path d="M 31,-4 C 42,-4 42,16 30,18" fill="none" stroke="#2C1B10" stroke-width="2.5"/>
+                                    <!-- Saucer -->
+                                    <path d="M -38,32 L 38,32" stroke="#2C1B10" stroke-width="3" stroke-linecap="round"/>
+                                    <!-- Small Leaf on Cup -->
+                                    <path d="M 0,2 C -6,10 0,18 0,18 C 0,18 6,10 0,2 Z" fill="#7A8B7B" stroke="#2C1B10" stroke-width="1"/>
+                                </g>
+
+                                <!-- MARIAN Brand Name -->
+                                <text x="150" y="202" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-weight="800" font-size="38" letter-spacing="3" fill="#2C1B10">
+                                    MARIAN
+                                </text>
+
+                                <!-- Divider & Slogan -->
+                                <line x1="60" y1="214" x2="240" y2="214" stroke="#2C1B10" stroke-width="1.2"/>
+                                <text x="150" y="228" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-style="italic" font-size="14" font-weight="600" fill="#4F321B">
+                                    Disfruta la vida, sorbo a sorbo.
+                                </text>
+
+                                <!-- Bottom Floral Flourish -->
+                                <g transform="translate(150, 248)">
+                                    <path d="M 0,-10 C -8,-2 0,6 0,6 C 0,6 8,-2 0,-10 Z" fill="#7A8B7B" stroke="#2C1B10" stroke-width="1.2"/>
+                                    <path d="M -10,-4 C -14,2 -6,6 -6,6 C -6,6 -2,2 -10,-4 Z" fill="#C8A97E" stroke="#2C1B10" stroke-width="1"/>
+                                    <path d="M 10,-4 C 14,2 6,6 6,6 C 6,6 2,2 10,-4 Z" fill="#C8A97E" stroke="#2C1B10" stroke-width="1"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <h1 class="font-serif-title text-3xl sm:text-5xl font-bold text-coffee-900 mb-4 leading-tight">
+                    Acompáñanos a Celebrar Nuestro Estreno
+                </h1>
+                <p class="text-base sm:text-lg text-coffee-700 max-w-xl mx-auto font-light leading-relaxed mb-8">
+                    Queremos compartir contigo la apertura de un cálido espacio diseñado para disfrutar del mejor café artesanal, postres deliciosos y momentos inolvidables.
+                </p>
+
+                <!-- Key Event Info Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl mx-auto text-left mb-6">
+                    <div class="bg-white/90 backdrop-blur border border-coffee-200 p-4 rounded-2xl flex items-center gap-3.5 shadow-xs">
+                        <div class="w-11 h-11 rounded-xl bg-coffee-800 text-coffee-100 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-regular fa-calendar-star"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-coffee-600 uppercase font-bold tracking-wider">Fecha Inaugural</span>
+                            <span class="font-semibold text-base text-coffee-900">Sábado, 1 de Agosto</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/90 backdrop-blur border border-coffee-200 p-4 rounded-2xl flex items-center gap-3.5 shadow-xs">
+                        <div class="w-11 h-11 rounded-xl bg-coffee-800 text-coffee-100 flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-coffee-600 uppercase font-bold tracking-wider">Hora de Apertura</span>
+                            <span class="font-semibold text-base text-coffee-900">10:00 AM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-10 bg-coffee-800 text-coffee-100 relative overflow-hidden shadow-inner">
+            <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
+                <div class="inline-flex items-center gap-2 text-coffee-300 text-xs uppercase font-bold tracking-widest mb-3">
+                    <i class="fa-solid fa-stopwatch text-coffee-400"></i>
+                    <span>Cuenta Regresiva Para el Gran Día</span>
+                </div>
+                
+                <!-- Live Countdown Grid -->
+                <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto my-4">
+                    <div class="bg-coffee-900/90 border border-coffee-700/70 rounded-2xl p-3 sm:p-4 shadow-lg backdrop-blur">
+                        <span id="cd-days" class="font-serif-title text-3xl sm:text-5xl font-bold text-coffee-300 block">00</span>
+                        <span class="text-[10px] sm:text-xs text-coffee-400 font-medium uppercase tracking-wider mt-1 block">Días</span>
+                    </div>
+                    <div class="bg-coffee-900/90 border border-coffee-700/70 rounded-2xl p-3 sm:p-4 shadow-lg backdrop-blur">
+                        <span id="cd-hours" class="font-serif-title text-3xl sm:text-5xl font-bold text-coffee-300 block">00</span>
+                        <span class="text-[10px] sm:text-xs text-coffee-400 font-medium uppercase tracking-wider mt-1 block">Horas</span>
+                    </div>
+                    <div class="bg-coffee-900/90 border border-coffee-700/70 rounded-2xl p-3 sm:p-4 shadow-lg backdrop-blur">
+                        <span id="cd-mins" class="font-serif-title text-3xl sm:text-5xl font-bold text-coffee-300 block">00</span>
+                        <span class="text-[10px] sm:text-xs text-coffee-400 font-medium uppercase tracking-wider mt-1 block">Minutos</span>
+                    </div>
+                    <div class="bg-coffee-900/90 border border-coffee-700/70 rounded-2xl p-3 sm:p-4 shadow-lg backdrop-blur">
+                        <span id="cd-secs" class="font-serif-title text-3xl sm:text-5xl font-bold text-coffee-300 block">00</span>
+                        <span class="text-[10px] sm:text-xs text-coffee-400 font-medium uppercase tracking-wider mt-1 block">Segundos</span>
+                    </div>
+                </div>
+
+                <p id="cd-status" class="text-xs text-coffee-300/90 italic font-light mt-2">
+                    ¡Te esperamos a las 10:00 AM para la degustación y bienvenida!
+                </p>
+            </div>
+        </section>
+
+        <section id="ubicacion" class="py-14 bg-coffee-200/40 border-y border-coffee-200/80 px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-10">
+                    <span class="text-coffee-700 text-xs uppercase font-bold tracking-widest block mb-1">
+                        ¿Cómo llegar?
+                    </span>
+                    <h2 class="font-serif-title text-3xl sm:text-4xl font-bold text-coffee-900">
+                        Nuestra Ubicación
+                    </h2>
+                    <p class="text-sm text-coffee-800 mt-1 max-w-lg mx-auto font-light">
+                        Encuéntranos en el corazón de Iztapalapa, un rincón pensado para ti.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                    <!-- Location Details -->
+                    <div class="lg:col-span-5 bg-white rounded-3xl p-6 border border-coffee-200 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-coffee-800 text-coffee-100 flex items-center justify-center text-xl mb-4 shadow-sm">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            
+                            <h3 class="font-serif-title text-2xl font-bold text-coffee-900 mb-3">
+                                El Rincón de Marian
+                            </h3>
+                            
+                            <div class="space-y-3.5 text-sm text-coffee-800 mb-6 font-normal">
+                                <p class="flex items-start gap-3">
+                                    <i class="fa-solid fa-map-pin text-coffee-600 mt-1"></i>
+                                    <span><strong>Dirección:</strong> Quetzal 23, El Paraíso, Iztapalapa, 09230 Ciudad de México, CDMX</span>
+                                </p>
+                                <p class="flex items-start gap-3">
+                                    <i class="fa-solid fa-landmark text-coffee-600 mt-1"></i>
+                                    <span><strong>Código Postal:</strong> 09230</span>
+                                </p>
+                                <p class="flex items-start gap-3">
+                                    <i class="fa-solid fa-mug-hot text-coffee-600 mt-1"></i>
+                                    <span><strong>Especialidad:</strong> Café de especialidad, bocadillos y repostería recién horneada.</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="space-y-2.5 pt-4 border-t border-coffee-100">
+                            <a href="https://maps.google.com/?q=Quetzal+23,+El+Para%C3%ADso,+Iztapalapa,+09230+Ciudad+de+M%C3%A9xico,+CDMX" target="_blank" rel="noopener" class="w-full bg-coffee-800 hover:bg-coffee-900 text-white font-medium py-3 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition shadow-xs hover:shadow">
+                                <i class="fa-brands fa-google text-base"></i>
+                                Abrir en Google Maps
+                            </a>
+                            <button onclick="copyAddress()" class="w-full bg-coffee-100 hover:bg-coffee-200 text-coffee-900 font-medium py-2.5 px-4 rounded-xl text-xs sm:text-sm flex items-center justify-center gap-2 transition border border-coffee-300">
+                                <i class="fa-regular fa-copy"></i>
+                                Copiar Dirección Completa
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Google Map Frame -->
+                    <div class="lg:col-span-7 h-80 lg:h-auto min-h-[340px] rounded-3xl overflow-hidden border border-coffee-300 shadow-md relative">
+                        <iframe 
+                            title="Mapa de Ubicación"
+                            class="w-full h-full border-0" 
+                            src="https://maps.google.com/maps?q=Quetzal%2023,%20El%20Para%C3%ADso,%20Iztapalapa,%2009230%20Ciudad%20de%20M%C3%A9xico,%20CDMX&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 px-4 max-w-xl mx-auto text-center">
+            <h3 class="font-serif-title text-2xl font-bold text-coffee-900 mb-2">
+                ¡Acompáñanos y Comparte!
+            </h3>
+            <p class="text-xs sm:text-sm text-coffee-700 mb-6 font-light">
+                Agrega el evento a tu calendario personal o invita a tus amigos por WhatsApp.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3">
+                <button onclick="addToCalendar()" class="bg-white hover:bg-coffee-100 text-coffee-900 border border-coffee-300 font-medium px-5 py-2.5 rounded-xl text-xs sm:text-sm flex items-center gap-2 shadow-xs transition hover:border-coffee-400">
+                    <i class="fa-regular fa-calendar-plus text-coffee-700 text-base"></i>
+                    Agregar a Google Calendar
+                </button>
+                <button onclick="shareWhatsApp()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-medium px-5 py-2.5 rounded-xl text-xs sm:text-sm flex items-center gap-2 shadow-xs transition">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    Compartir por WhatsApp
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-coffee-950 text-coffee-400 py-8 px-4 border-t border-coffee-900 text-center text-xs space-y-2">
+        <div class="font-serif-title text-xl text-coffee-200 font-bold tracking-wider">
+            El Rincón de Marian
+        </div>
+        <p class="italic text-coffee-400 font-serif text-sm">"Disfruta la vida, sorbo a sorbo."</p>
+        <p class="text-coffee-600 text-[11px] pt-2">
+            Quetzal 23, El Paraíso, Iztapalapa, 09230 Ciudad de México, CDMX
+        </p>
+    </footer>
+
+    <!-- Toast Notification Popup -->
+    <div id="toast" class="toast-notification fixed bottom-5 right-5 z-50 bg-coffee-900 text-coffee-100 px-5 py-3.5 rounded-2xl shadow-2xl border border-coffee-700 text-xs sm:text-sm flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg" id="toastIcon"></i>
+        <span id="toastMsg">Notificación</span>
+    </div>
+
+    <script>
+        // Dynamic target date logic: August 1st at 10:00 AM
+        function getTargetDate() {
+            const now = new Date();
+            let targetYear = now.getFullYear();
+            let target = new Date(targetYear, 7, 1, 10, 0, 0); // Month 7 is August (0-indexed)
+            
+            // If August 1st of current year has already passed, set for next year
+            if (now > target) {
+                target = new Date(targetYear + 1, 7, 1, 10, 0, 0);
+            }
+            return target;
+        }
+
+        const targetDate = getTargetDate();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate.getTime() - now;
+
+            const daysEl = document.getElementById('cd-days');
+            const hoursEl = document.getElementById('cd-hours');
+            const minsEl = document.getElementById('cd-mins');
+            const secsEl = document.getElementById('cd-secs');
+            const statusEl = document.getElementById('cd-status');
+
+            if (distance <= 0) {
+                daysEl.innerText = '00';
+                hoursEl.innerText = '00';
+                minsEl.innerText = '00';
+                secsEl.innerText = '00';
+                if (statusEl) {
+                    statusEl.innerText = '¡HOY ES LA GRAN INAUGURACIÓN! ¡TE ESPERAMOS!';
+                    statusEl.classList.add('text-amber-300', 'font-bold');
+                }
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
