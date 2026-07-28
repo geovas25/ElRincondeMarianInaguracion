@@ -424,3 +424,23 @@
             }
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Inyectar los valores calculados en el HTML con formato de dos dígitos
+            daysEl.innerText = days < 10 ? '0' + days : days;
+            hoursEl.innerText = hours < 10 ? '0' + hours : hours;
+            minsEl.innerText = mins < 10 ? '0' + mins : mins;
+            secsEl.innerText = secs < 10 ? '0' + secs : secs;
+        }
+
+        // Ejecutar la función inmediatamente para evitar el parpadeo en '00' inicial
+        updateCountdown();
+
+        // Motor de automatización: Ejecuta la función cada 1000 milisegundos (1 segundo)
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
